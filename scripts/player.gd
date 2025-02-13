@@ -18,6 +18,7 @@ func _physics_process(delta):
 	enemy_attack()
 	attack()
 	current_camera()
+	dialogue()
 	if health<=0:
 		player_alive=false
 		health=0
@@ -152,3 +153,7 @@ func current_camera():
 	elif global.current_scene=="cliff_side":
 		$world_camera.enabled=false
 		$cliffside_camera.enabled=true
+func dialogue():
+	if Input.is_action_just_pressed("interact"):
+		DialogueManager.show_example_dialogue_balloon(load("res://dialogue.dialogue"),"Garden")
+		return
